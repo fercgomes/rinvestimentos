@@ -7,6 +7,5 @@ export const portfolioThreadId = 'm51wnx';
 /** Host */
 export const host =
   process.env.NODE_ENV === 'production'
-    ? // ? 'api.rinvestimentos.xyz'
-      'api.r-investimentos.herokuapp.com'
+    ? 'api.rinvestimentos.xyz'
     : 'api.localhost';
