@@ -15,6 +15,10 @@ class API {
   public async getPortfolio() {
     return await this.axios.get('/reddit/portfolio').then((res) => res.data);
   }
+
+  public async getDDs() {
+    return await this.axios.get('/reddit/dds').then((res) => res.data);
+  }
 }
 
 const api = new API();

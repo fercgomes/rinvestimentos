@@ -1,4 +1,5 @@
-import { Heading, Text } from '@chakra-ui/layout';
+import { Container, Heading, Text } from '@chakra-ui/layout';
+import { Spinner } from '@chakra-ui/spinner';
 import { Pie } from '@nivo/pie';
 import React from 'react';
 import { useQuery } from 'react-query';
@@ -7,7 +8,12 @@ import { api } from '../../service/api';
 const PortfolioPage = () => {
   const portfolio = useQuery(['portfolio'], () => api.getPortfolio());
 
-  if (!portfolio.data) return <p>carregando...</p>;
+  if (!portfolio.data)
+    return (
+      <Container centerContent style={{ padding: 120 }}>
+        <Spinner />
+      </Container>
+    );
 
   const slicedData = portfolio.data.slice(0, 10);
   const totalScore = slicedData.reduce((prev: any, curr: any) => {

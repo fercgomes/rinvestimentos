@@ -3,6 +3,8 @@ import { ConfigService } from '@nestjs/config';
 import * as snoowrap from 'snoowrap';
 import { portfolioThreadId } from '../constants';
 
+const dds = require('./dds.json');
+
 @Injectable()
 export class RedditService {
   private snoowrap: snoowrap;
@@ -75,5 +77,43 @@ export class RedditService {
       }, []);
 
     return comments;
+  }
+
+  public async getSubmission(submissionId: string) {
+    // @ts-ignore
+    const submission = await this.snoowrap.getSubmission(submissionId).fetch();
+    return {
+      id: submissionId,
+      title: submission.title,
+      author: submission.author.name,
+      score: submission.score,
+      date: submission.created_utc,
+      body: submission.selftext,
+      link: submission.permalink,
+    };
+  }
+
+  public async getDueDilligencePosts() {
+    const submissions = [];
+    for (const dd of dds) {
+      // @ts-ignore
+      const submission: snoowrap.Submission = await this.snoowrap
+        .getSubmission(dd.submissionId)
+        .fetch();
+
+      submissions.push({
+        ticker: dd.ticker,
+        submission: {
+          id: dd.submissionId,
+          title: submission.title,
+          author: submission.author.name,
+          score: submission.score,
+          date: submission.created_utc,
+          body: submission.selftext_html,
+          link: submission.permalink,
+        },
+      });
+    }
+    return submissions;
   }
 }
