@@ -38,15 +38,21 @@ const PortfolioPage = () => {
         </a>
       </Text>
       <Text>As proporções são em relação aos 10 tickers com maior score.</Text>
-      <div>
+      <div
+        style={{
+          minWidth: 200,
+          maxWidth: '100%',
+          minHeight: 500,
+          maxHeight: '100%',
+        }}
+      >
         <Pie
           data={slicedData}
-          width={1000}
-          height={500}
           margin={{ top: 80, right: 120, bottom: 80, left: 120 }}
+          width={1000}
+          height={400}
           id="ticker"
           value="score"
-          //   margin={{ top: 40, right: 100, bottom: 80, left: 100 }}
           innerRadius={0.5}
           padAngle={0.7}
           cornerRadius={3}

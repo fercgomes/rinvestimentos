@@ -61,7 +61,7 @@ export class RedditService {
       })
       .filter((item) => item !== null && item.score > 0)
       .reduce((prev, curr) => {
-        const index = prev.findIndex((item) => item.body === curr);
+        const index = prev.findIndex((item) => item.ticker === curr.ticker);
         if (index !== -1) {
           // Item already there, collpase them
           prev[index] = {

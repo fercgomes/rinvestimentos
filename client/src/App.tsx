@@ -1,12 +1,18 @@
 import React from 'react';
-import { ChakraProvider, Heading } from '@chakra-ui/react';
-import { BrowserRouter, Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import NavBar from './components/navbar/navbar';
+import DueDilligencePage from './pages/due-dilligence';
+import HomePage from './pages/home/home';
 import PortfolioPage from './pages/portfolio';
 
 function App() {
   return (
     <>
-      <Route path="/" exact component={PortfolioPage} />
+      <NavBar />
+      <Route path="/" exact component={HomePage} />
+      <Route path="/carteiras" exact component={PortfolioPage} />
+      <Route path="/dds" exact component={DueDilligencePage} />
+      <Route path="/calculadoras" exact component={HomePage} />
     </>
   );
 }
