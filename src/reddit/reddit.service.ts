@@ -2,8 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as snoowrap from 'snoowrap';
 import { portfolioThreadId } from '../constants';
-
-const dds = require('./dds.json');
+import { dds } from './dds';
 
 @Injectable()
 export class RedditService {
