@@ -2,10 +2,12 @@ import { ChakraProvider } from '@chakra-ui/react';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import { store } from './store';
 import customTheme from './utils/theme';
 
 const queryClient = new QueryClient();
@@ -15,7 +17,9 @@ ReactDOM.render(
     <ChakraProvider theme={customTheme}>
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
-          <App />
+          <Provider store={store}>
+            <App />
+          </Provider>
         </QueryClientProvider>
       </BrowserRouter>
     </ChakraProvider>
